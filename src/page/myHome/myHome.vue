@@ -1,47 +1,53 @@
 <template>
-  <div class="myHome">
-    <form class="search_form">
-      <input type="search" name="search" placeholder="搜索平台、动态、新闻" class="search_input" v-model="searchValue" @input="checkInput">
-      <input type="submit" name="submit" class="search_submit" @click.prevent="searchTarget('')">
-    </form>
-    <swiper :options="swiperOption" class="swiper-box">
-      <swiper-slide class="swiper-item"><img src="./2.jpg" alt=""></swiper-slide>
-      <swiper-slide class="swiper-item"><img src="./3.jpg" alt=""></swiper-slide>
-      <swiper-slide class="swiper-item"><img src="./4.jpg" alt=""></swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
-    </swiper>
-    <div>
-      <ul class="titleList clear">
-        <li>
-          <img src="./icon1.png" alt="">
-          <p>天天夺金</p>
-        </li>
-        <li>
-          <img src="./icon2.png" alt="">
-          <p>邀请好友</p>
-        </li>
-        <li>
-          <img src="./icon3.png" alt="">
-          <p>自动投标</p>
-        </li>
-        <li>
-          <img src="./icon4.png" alt="">
-          <p>任务大厅</p>
-        </li>
-      </ul>
 
-      <group>
-        <cell title="title" value="value">11</cell>
-        <cell title="title" value="value">11</cell>
-      </group>
+
+  <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" height="1000px" @on-pulldown-loading="load2" v-model="status1">
+    <div class="box2">
+      <div class="myHome">
+        <form class="search_form">
+          <input type="search" name="search" placeholder="搜索平台、动态、新闻" class="search_input" v-model="searchValue" @input="checkInput">
+          <input type="submit" name="submit" class="search_submit" @click.prevent="searchTarget('')">
+        </form>
+        <swiper :options="swiperOption" class="swiper-box">
+          <swiper-slide class="swiper-item"><img src="./2.jpg" alt=""></swiper-slide>
+          <swiper-slide class="swiper-item"><img src="./3.jpg" alt=""></swiper-slide>
+          <swiper-slide class="swiper-item"><img src="./4.jpg" alt=""></swiper-slide>
+          <div class="swiper-pagination" slot="pagination"></div>
+        </swiper>
+        <div>
+          <ul class="titleList clear">
+            <li>
+              <img src="./icon1.png" alt="">
+              <p>天天夺金</p>
+            </li>
+            <li>
+              <img src="./icon2.png" alt="">
+              <p>邀请好友</p>
+            </li>
+            <li>
+              <img src="./icon3.png" alt="">
+              <p>自动投标</p>
+            </li>
+            <li>
+              <img src="./icon4.png" alt="">
+              <p>任务大厅</p>
+            </li>
+          </ul>
+
+          <group>
+            <cell title="title" value="value">11</cell>
+            <cell title="title" value="value">11</cell>
+          </group>
+        </div>
+      </div>
     </div>
-  </div>
+  </scroller>
 </template>
 
 <script type="text/ecmascript-6">
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
   import { Group, Cell } from 'vux'
-
+  import { Scroller, Divider, Spinner } from 'vux'
   export default{
     data() {
       return {
@@ -52,14 +58,27 @@
           autoplay:'2000',
           loop:'true'
 
-        }
+        },
+        status1: {
+          pulldownStatus: 'default'
+        },
       }
     },
     components:{
       swiper,
       swiperSlide,
       Group,
-      Cell
+      Cell,
+      Scroller,
+      Divider,
+      Spinner
+    },
+    methods:{
+      load2 () {
+        setTimeout(() => {
+          this.status1.pulldownStatus = 'default'
+        }, 2000)
+      },
     }
   };
 </script>
@@ -124,5 +143,38 @@
         width: 50%;
       }
     }
+  }
+
+
+  .box1 {
+    height: 100px;
+    position: relative;
+    width: 1490px;
+  }
+  .box1-item {
+    width: 200px;
+    height: 100px;
+    background-color: #ccc;
+    display:inline-block;
+    margin-left: 15px;
+    float: left;
+    text-align: center;
+    line-height: 100px;
+  }
+  .box1-item:first-child {
+    margin-left: 0;
+  }
+  .box2-wrap {
+    height: 1000px;
+    overflow: hidden;
+  }
+  .rotate {
+    transform: rotate(-180deg);
+  }
+  .pulldown-arrow {
+    display: inline-block;
+    transition: all linear 0.2s;
+    color: #666;
+    font-size: 25px;
   }
 </style>
