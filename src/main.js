@@ -5,13 +5,16 @@ import store from './store/'
 import {routerMode} from './config/env'
 import './config/rem'
 import FastClick from 'fastclick'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+require('swiper/dist/css/swiper.css')
+
 
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function() {
         FastClick.attach(document.body);
     }, false);
 }
-
+Vue.use(VueAwesomeSwiper)
 Vue.use(VueRouter)
 const router = new VueRouter({
 	routes,

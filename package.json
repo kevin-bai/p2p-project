@@ -1,5 +1,5 @@
 {
-  "name": "elm",
+  "name": "p2p",
   "version": "2.0.1",
   "description": "p2p-project",
   "author": "bjw <897840029@qq.com>",
@@ -16,6 +16,7 @@
     "iscroll": "^5.2.0",
     "showdown": "^1.6.4",
     "vue": "^2.1.0",
+    "vue-awesome-swiper": "^2.6.7",
     "vue-router": "^2.1.1",
     "vuex": "^2.0.0"
   },
