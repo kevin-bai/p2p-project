@@ -29,12 +29,18 @@
           <p>任务大厅</p>
         </li>
       </ul>
+
+      <group>
+        <cell title="title" value="value">11</cell>
+        <cell title="title" value="value">11</cell>
+      </group>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
+  import { Group, Cell } from 'vux'
 
   export default{
     data() {
@@ -51,7 +57,9 @@
     },
     components:{
       swiper,
-      swiperSlide
+      swiperSlide,
+      Group,
+      Cell
     }
   };
 </script>
