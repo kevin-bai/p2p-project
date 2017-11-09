@@ -58,13 +58,13 @@
               </group>
             </div>
             <div slot="content" class="card-demo-content02">
-              <panel :footer="footer" :list="list" :type="type">
+              <panel :list="list" :type="type">
                 <div slot="header">22</div>
               </panel>
             </div>
           </card>
 
-          <divider class="divider"> 网贷有风险</divider>
+          <divider class="divider"> 网贷有风险 &emsp; 投资需谨慎</divider>
         </div>
       </div>
     </div>
