@@ -73,7 +73,9 @@
       <span class="pulldown-arrow" v-show="status2.pulldownStatus === 'down' || status2.pulldownStatus === 'up'" :class="{'rotate': status2.pulldownStatus === 'up'}">↓</span>
       <span class="pulldown-arrow" v-show="status2.pulldownStatus === 'down'">下拉刷新</span>
       <span class="pulldown-arrow" v-show="status2.pulldownStatus === 'up'">释放刷新</span>
-      <span v-show="status2.pulldownStatus === 'loading'"><spinner  type="ios-small"></spinner></span>
+      <span v-show="status2.pulldownStatus === 'loading'">
+        <inline-loading></inline-loading><span style="vertical-align:middle;display:inline-block;">&nbsp;&nbsp;加载中</span>
+      </span>
     </div>
 
   </scroller>
@@ -82,7 +84,7 @@
 <script type="text/ecmascript-6">
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
   import { Group, Cell } from 'vux'
-  import { Scroller, Divider, Spinner , Card , Panel} from 'vux'
+  import { Scroller, Divider, Spinner , Card , Panel,InlineLoading } from 'vux'
   export default{
     components:{
       swiper,
@@ -93,7 +95,8 @@
       Divider,
       Spinner,
       Card,
-      Panel
+      Panel,
+      InlineLoading
     },
     data() {
       return {
@@ -243,6 +246,7 @@
     font-size: .5rem;
     span {
       font-size: .5rem;
+      color: #666666;
     }
   }
   .card-demo-content01{
