@@ -1,9 +1,16 @@
 <template>
-  <div>this is my userCenter</div>
+  <div>
+    <x-header>用户中心</x-header>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
-    export default{};
+  import {XHeader} from 'vux';
+    export default{
+      components:{
+        XHeader
+      }
+    };
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>

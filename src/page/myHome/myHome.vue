@@ -1,7 +1,5 @@
 <template>
-
-
-  <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}"  @on-pulldown-loading="load2" v-model="status1">
+  <scroller lock-x scrollbar-y use-pulldown   @on-pulldown-loading="load2" v-model="status2">
     <div class="box2">
       <div class="myHome">
         <form class="search_form">
@@ -52,7 +50,7 @@
           <card>
             <div slot ="header" >
               <group>
-                <cell title="热门平台" value="查看更多" :link="{path:'/news'}">
+                <cell title="热门平台" value="查看更多" :link="{path:'/community'}">
                   <img slot="icon" width="20" style="display:block;margin-right:5px;" src="./icon5.png">
                 </cell>
               </group>
@@ -68,6 +66,16 @@
         </div>
       </div>
     </div>
+
+    <!--pulldown slot-->
+    <div slot="pulldown" class="xs-plugin-pulldown-container xs-plugin-pulldown-down" style="position: absolute; width: 100%; height: 60px; line-height: 60px; top: -60px; text-align: center;">
+      <span v-show="status2.pulldownStatus === 'default'">加载完成</span>
+      <span class="pulldown-arrow" v-show="status2.pulldownStatus === 'down' || status2.pulldownStatus === 'up'" :class="{'rotate': status2.pulldownStatus === 'up'}">↓</span>
+      <span class="pulldown-arrow" v-show="status2.pulldownStatus === 'down'">下拉刷新</span>
+      <span class="pulldown-arrow" v-show="status2.pulldownStatus === 'up'">释放刷新</span>
+      <span v-show="status2.pulldownStatus === 'loading'"><spinner  type="ios-small"></spinner></span>
+    </div>
+
   </scroller>
 </template>
 
@@ -106,13 +114,13 @@
           fallbackSrc: 'http://placeholder.qiniudn.com/60x60/3cc51f/ffffff',
           title: '标题一',
           desc: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。',
-          url: '/component/cell'
+          url: '/userCenter'
         }, {
           src: 'http://placeholder.qiniudn.com/60x60/3cc51f/ffffff',
           title: '标题二',
           desc: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。',
           url: {
-            path: '/component/radio',
+            path: '/news',
             replace: false
           },
           meta: {
@@ -120,14 +128,18 @@
             date: '时间',
             other: '其他信息'
           }
-        }]
+        }],
+        status2: {
+          pulldownStatus: 'default'
+        }
       }
     },
     methods:{
       load2 () {
+
         setTimeout(() => {
-          this.status1.pulldownStatus = 'default'
-        }, 2000)
+          this.status2.pulldownStatus = 'default'
+        }, 1500)
       },
     }
   };
@@ -194,8 +206,6 @@
       }
     }
   }
-
-
   .box1 {
     height: 100px;
     position: relative;
@@ -229,7 +239,12 @@
     color: #666;
     font-size: 25px;
   }
-
+  .xs-plugin-pulldown-down{
+    font-size: .5rem;
+    span {
+      font-size: .5rem;
+    }
+  }
   .card-demo-content01{
     text-align: center;
     padding: 1rem;

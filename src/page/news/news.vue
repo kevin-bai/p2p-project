@@ -1,114 +1,60 @@
 <template>
-  <div>
-    <divider>Pull Down to Refresh</divider>
-    <scroller lock-x scrollbar-y use-pulldown height="200px" @on-pulldown-loading="load1" ref="demo1">
-      <div class="box2">
-        <p v-for="i in n1">placeholder {{i}}</p>
+<div>
+
+  <x-header>新闻咨询
+    <a slot="right" v-model="show1">
+      <a @click="showMessagePanel">消息</a>
+    </a>
+  </x-header>
+
+  <div v-transfer-dom>
+    <popup v-model="show1" position="right" width="80%">
+      <div class="position-vertical-demo" style="width: 100%">
+          <group>
+            <cell :title="'消息'" is-link></cell>
+            <cell :title="'设置'" is-link>
+              <img slot="icon" width="20" style="display:block;margin-right:5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=">
+            </cell>
+            <cell :title="'通知'" is-link><badge text="1"></badge></cell>
+          </group>
       </div>
-    </scroller>
-
-    <divider>Chinese: 下拉刷新</divider>
-    <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" height="200px" @on-pulldown-loading="load2" v-model="status1">
-      <div class="box2">
-        <p v-for="i in 80">占位 {{i}}</p>
-      </div>
-    </scroller>
-
-    <divider>custom pulldown html template</divider>
-    <scroller lock-x scrollbar-y use-pulldown height="200px" @on-pulldown-loading="load3" ref="demo3" v-model="status2">
-      <!--content slot-->
-      <div class="box2">
-        <p v-for="i in 80">placeholder {{i}}</p>
-      </div>
-
-      <!--pulldown slot-->
-      <div slot="pulldown" class="xs-plugin-pulldown-container xs-plugin-pulldown-down" style="position: absolute; width: 100%; height: 60px; line-height: 60px; top: -60px; text-align: center;">
-        <span v-show="status2.pulldownStatus === 'default'"></span>
-        <span class="pulldown-arrow" v-show="status2.pulldownStatus === 'down' || status2.pulldownStatus === 'up'" :class="{'rotate': status2.pulldownStatus === 'up'}">↓</span>
-        <span v-show="status2.pulldownStatus === 'loading'"><spinner type="ios-small"></spinner></span>
-      </div>
-    </scroller>
-
-
+    </popup>
   </div>
+</div>
 </template>
 
 <script type="text/ecmascript-6">
-  import { Scroller, Divider, Spinner } from 'vux'
+  import { Scroller, Divider, Spinner ,XHeader ,TransferDom ,Popup ,Group, Cell,Badge } from 'vux'
 
   export default {
+    directives: {
+      TransferDom
+    },
     components: {
       Scroller,
       Divider,
-      Spinner
+      Spinner,
+      XHeader,
+      Popup,
+      Group,
+      Cell,
+      Badge
     },
     methods: {
-      load1 () {
-        this.n1 += 10
-        this.$nextTick(() => {
-          setTimeout(() => {
-          this.$refs.demo1.donePulldown()
-        }, 1000)
-      })
-      },
-      load2 () {
-        setTimeout(() => {
-          this.status1.pulldownStatus = 'default'
-      }, 2000)
-      },
-      load3 () {
-        setTimeout(() => {
-          this.$refs.demo3.donePulldown()
-      }, 2000)
+      showMessagePanel(){
+        console.log('1111')
+        this.show1 = true;
       }
     },
     data () {
       return {
-        n1: 10,
-        status: {
-          pulldownStatus: 'default'
-        },
-        status1: {
-          pulldownStatus: 'default'
-        },
-        status2: {
-          pulldownStatus: 'default'
-        }
+        show:false,
+        show1: false,
       }
     }
   }
 </script>
 
 <style lang="less" scoped>
-  .box1 {
-    height: 100px;
-    position: relative;
-    width: 1490px;
-  }
-  .box1-item {
-    width: 200px;
-    height: 100px;
-    background-color: #ccc;
-    display:inline-block;
-    margin-left: 15px;
-    float: left;
-    text-align: center;
-    line-height: 100px;
-  }
-  .box1-item:first-child {
-    margin-left: 0;
-  }
-  .box2-wrap {
-    height: 300px;
-    overflow: hidden;
-  }
-  .rotate {
-    transform: rotate(-180deg);
-  }
-  .pulldown-arrow {
-    display: inline-block;
-    transition: all linear 0.2s;
-    color: #666;
-    font-size: 25px;
-  }
+
 </style>
