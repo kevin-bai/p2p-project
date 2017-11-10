@@ -34,7 +34,7 @@
 
           <card>
             <div slot ="header" >
-              <group>
+              <group :gutter="0">
                 <cell title="平台新闻" value="查看更多" :link="{path:'/news'}">
                   <img slot="icon" width="20" style="display:block;margin-right:5px;" src="./icon5.png">
                 </cell>
@@ -49,8 +49,8 @@
 
           <card>
             <div slot ="header" >
-              <group>
-                <cell title="热门平台" value="查看更多" :link="{path:'/community'}">
+              <group :gutter="0">
+                <cell class="mt0" title="热门平台" value="查看更多" :link="{path:'/community'}">
                   <img slot="icon" width="20" style="display:block;margin-right:5px;" src="./icon5.png">
                 </cell>
               </group>
@@ -230,7 +230,6 @@
   .botContent {
     height: auto;
     overflow: hidden;
-
     padding-bottom: 60px;
   }
   .rotate {
@@ -273,5 +272,8 @@
     .weui-panel__hd{
       height: 0;
     }
+  }
+  .mt0{
+    margin-top: 0;
   }
 </style>
