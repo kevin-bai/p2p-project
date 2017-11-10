@@ -117,15 +117,23 @@
   .menuItem {
     background: $fc;
     .icon {
-      width: 40px;
-      height: 40px;
+      width: 10vw;
+      height: 10vw;
       float: left;
       margin-right: 10px;
     }
     .grid-item-content {
-      font-size: .5rem;
       width: 70%;
       float: left;
+      p{
+        margin-top: .2rem;
+        font-size: .6rem;
+        line-height: .4rem;
+      }
+      span{
+        font-size: .5rem;
+        color: #666;
+      }
     }
   }
   .menuList2 {
