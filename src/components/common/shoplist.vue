@@ -29,7 +29,7 @@
 					</h5>
 					<h5 class="fee_distance">
 						<p class="fee">
-							¥{{item.float_minimum_order_amount}}起送 
+							¥{{item.float_minimum_order_amount}}起送
 							<span class="segmentation">/</span>
 							{{item.piecewise_agent_fee.tips}}
 						</p>
@@ -63,7 +63,7 @@
 	</div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 
 import {mapState} from 'vuex'
 import {shopList} from 'src/service/getData'
@@ -123,7 +123,7 @@ export default {
 			}
 			//防止重复请求
 			if (this.preventRepeatReuqest) {
-				return 
+				return
 			}
 			this.showLoading = true;
 			this.preventRepeatReuqest = true;
