@@ -9,16 +9,20 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 require('swiper/dist/css/swiper.css')
 
 
+
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function() {
         FastClick.attach(document.body);
     }, false);
 }
+
 Vue.use(VueAwesomeSwiper)
 Vue.use(VueRouter)
+
+
 const router = new VueRouter({
 	routes,
-	mode: routerMode,
+	// mode: routerMode,
 	strict: process.env.NODE_ENV !== 'production',
 	scrollBehavior (to, from, savedPosition) {
 	    if (savedPosition) {
